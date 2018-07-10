@@ -46,7 +46,7 @@
       </el-form-item>
       <el-form-item :label-width='formLabelWidth' label="图片上传：">
         <el-upload 
-          action="https://jsonplaceholder.typicode.com/posts/" 
+          action="https://httpbin.org/post" 
           list-type="picture-card" 
           :on-preview="handlePictureCardPreview" 
           :on-remove="handleRemove"
@@ -61,7 +61,7 @@
       </el-form-item>
       <el-form-item :label-width='formLabelWidth' label="详细内容：">
         <div>
-          <vue-ueditor-wrap v-model="msg"></vue-ueditor-wrap>
+          <Tinymce :height=400 ref="editor" v-model="form.msg"></Tinymce>
         </div>
       </el-form-item>
       <el-form-item>
@@ -73,13 +73,13 @@
 </template>
 
 <script>
-import VueUeditorWrap from 'vue-ueditor-wrap'
+// import VueUeditorWrap from 'vue-ueditor-wrap'
+import Tinymce from '@/components/Tinymce'
 
 export default {
-  components: { VueUeditorWrap },
+  components: { Tinymce },
   data() {
     return {
-      msg: '<h2><img src="http://img.baidu.com/hi/jx2/j_0003.gif"/>Vue2.x + UEditor + v-model双向绑定</h2>',
       dialogImageUrl: '',
       dialogVisible: false,
       form: {
@@ -93,27 +93,45 @@ export default {
         price: '',
         marketPrice: '',
         keyword: '',
-        abstract: ''
+        abstract: '',
+        imgBold: [],
+        msg: '<h2><img src="http://img.baidu.com/hi/jx2/j_0003.gif"/>Vue2.x + tinymce4.7.13 + v-model双向绑定<img src="http://img.baidu.com/hi/jx2/j_0003.gif"/></h2>'
       },
       formLabelWidth: '100px'
     }
   },
   methods: {
     onSubmit() {
-      console.log('submit!')
+      console.log(this.form)
     },
+    // 文件列表移除文件时的钩子
     handleRemove(file, fileList) {
       console.log(file, fileList)
     },
+    // 点击文件列表中已上传的文件时的钩子
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url
       this.dialogVisible = true
     },
-    handleSuccess() {
-      console.log('上传成功')
+    // 文件上传成功时的钩子
+    handleSuccess(response, file, fileList) {
+      console.log(response.files.file)
+      this.form.imgBold.push(response.files.file)
+      console.log(this.form.imgBold)
+      this.$message({
+        showClose: true,
+        message: '恭喜你，这是一条成功消息',
+        type: 'success'
+      })
     },
+    // 文件上传失败时的钩子
     handleError(err, file, fileList) {
       console.log(err, file, fileList)
+      this.$message({
+        showClose: true,
+        message: '图片上传失败',
+        type: 'error'
+      })
     }
   }
 }
