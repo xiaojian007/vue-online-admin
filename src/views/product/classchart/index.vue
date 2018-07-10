@@ -1,71 +1,71 @@
 <template>
   <div class="app-container">
-    <el-input placeholder="Filter keyword" v-model="filterText" style="margin-bottom:30px;"></el-input>
-
-    <el-tree class="filter-tree" :data="data2" :props="defaultProps" default-expand-all :filter-node-method="filterNode" ref="tree2"></el-tree>
-
+    <!-- 搜索查询 -->
+    <div class="search-style">
+      <div class="title-names">搜索查询</div>
+      产品名称：
+      <el-input 
+        placeholder="请输入内容" 
+        v-model="filterText" 
+        >
+        <i slot="prefix" class="el-input__icon el-icon-search"></i>
+      </el-input>
+    </div>
+    <!-- 新增+删除 -->
+    <add-delete v-on:add="addproduct"></add-delete>
+    <!-- 列表树状图 -->
+    <Tree v-show="!addOn" :filterText="filterText"></Tree>
+    <add v-show="addOn"></add>
   </div>
 </template>
 
 <script>
+import Tree from './components/productList'
+import addDelete from './components/adddelete'
+import add from './components/add'
+
 export default {
+  components: { Tree, addDelete, add },
   watch: {
     filterText(val) {
-      this.$refs.tree2.filter(val)
+      console.log(val)
+      this.filterText = val
     }
   },
 
   methods: {
-    filterNode(value, data) {
-      if (!value) return true
-      return data.label.indexOf(value) !== -1
+    addproduct(childValue) {
+      this.addOn = childValue
     }
   },
 
   data() {
     return {
       filterText: '',
-      data2: [{
-        id: 1,
-        label: 'Level one 1',
-        children: [{
-          id: 4,
-          label: 'Level two 1-1',
-          children: [{
-            id: 9,
-            label: 'Level three 1-1-1'
-          }, {
-            id: 10,
-            label: 'Level three 1-1-2'
-          }]
-        }]
-      }, {
-        id: 2,
-        label: 'Level one 2',
-        children: [{
-          id: 5,
-          label: 'Level two 2-1'
-        }, {
-          id: 6,
-          label: 'Level two 2-2'
-        }]
-      }, {
-        id: 3,
-        label: 'Level one 3',
-        children: [{
-          id: 7,
-          label: 'Level two 3-1'
-        }, {
-          id: 8,
-          label: 'Level two 3-2'
-        }]
-      }],
-      defaultProps: {
-        children: 'children',
-        label: 'label'
-      }
+      addOn: false
     }
   }
 }
 </script>
 
+<style rel="stylesheet/scss" lang="scss" scoped>
+.app-container{
+  .search-style{
+    border: 1px solid #ddd;
+    padding: 30px 20px;
+    position: relative;
+    margin-top: 20px;
+    .title-names{
+      position: absolute;
+      top: -20px;
+      font-size: 18px;
+      background-color: #ffffff;
+      padding: 5px 20px;
+      left: 10px;
+    }
+    .el-input--prefix{
+      width: 300px;
+    }
+  }
+}
+</style>

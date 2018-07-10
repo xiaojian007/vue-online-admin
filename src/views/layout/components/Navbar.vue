@@ -7,8 +7,9 @@
     <div class="el-dropdown-ems">
       <el-dropdown trigger="click">
         <span class="el-dropdown-link">
-          <i class="el-icon-bell"></i>
-          <em class="ems">8</em>
+          <el-badge :value="200" :max="99" class="item">
+            <el-button size="small">消息</el-button>
+          </el-badge>
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>新闻评论</el-dropdown-item>
@@ -106,7 +107,6 @@ export default {
 em{font-style: normal;}
 .navbar {
   height: 50px;
-  line-height: 50px;
   border-radius: 0px !important;
   .hamburger-container {
     line-height: 58px;
@@ -151,8 +151,8 @@ em{font-style: normal;}
   }
   .el-dropdown-ems{
     position: absolute;
-    top: 0;
-    right: 370px;
+    top: 9px;
+    right: 385px;
     cursor: pointer;
     .ems{
       display: inline-block;
