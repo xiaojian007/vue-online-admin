@@ -14,18 +14,22 @@
     <!-- 新增+删除 -->
     <add-delete v-on:add="addproduct"></add-delete>
     <!-- 列表树状图 -->
-    <Tree v-show="!addOn" :filterText="filterText"></Tree>
-    <add v-show="addOn"></add>
+    <div class="list">
+      <Tree v-show="!addOn" :filterText="filterText"></Tree>
+      <add v-show="addOn" v-on:back="back"></add>
+      <product-table></product-table>
+    </div>
   </div>
 </template>
 
 <script>
 import Tree from './components/productList'
+import productTable from './components/productTable'
 import addDelete from './components/adddelete'
 import add from './components/add'
 
 export default {
-  components: { Tree, addDelete, add },
+  components: { Tree, addDelete, add, productTable },
   watch: {
     filterText(val) {
       console.log(val)
@@ -35,6 +39,9 @@ export default {
 
   methods: {
     addproduct(childValue) {
+      this.addOn = childValue
+    },
+    back(childValue) {
       this.addOn = childValue
     }
   },
@@ -66,6 +73,9 @@ export default {
     .el-input--prefix{
       width: 300px;
     }
+  }
+  .list{
+    display: flex;
   }
 }
 </style>

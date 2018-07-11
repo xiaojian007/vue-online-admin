@@ -121,6 +121,7 @@ export default {
   .product-list{
     border: 1px solid #ccc;
     width: 220px;
+    float: left;
     .type{
       line-height: 36px;
       height: 36px;
