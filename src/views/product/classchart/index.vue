@@ -17,7 +17,7 @@
     <div class="list">
       <Tree v-show="!addOn" :filterText="filterText"></Tree>
       <add v-show="addOn" v-on:back="back"></add>
-      <product-table></product-table>
+      <product-table v-show="!addOn"></product-table>
     </div>
   </div>
 </template>

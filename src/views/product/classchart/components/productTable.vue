@@ -2,8 +2,13 @@
 <div class="table">
   <el-table
     :data="tableCommodity"
+    @selection-change="handleSelectionChange"
     style="width: 100%">
-    <el-table-column type="expand">
+    <el-table-column
+      type="selection"
+      width="55">
+    </el-table-column>
+    <el-table-column label="查看" type="expand">
       <template slot-scope="props">
         <el-form label-position="left" inline class="demo-table-expand">
           <el-form-item label="商品名称：">
@@ -19,7 +24,7 @@
             <span>{{ props.row.abstract }}</span>
           </el-form-item>
           <el-form-item label="图片展示：">
-            <img class="showImg" v-for="(item, value) in props.row.imgBold" :src="item" alt="">
+            <img class="showImg" v-for="(item, value, index) in props.row.imgBold" :key="index" :src="item" alt="">
           </el-form-item>
         </el-form>
       </template>
@@ -32,6 +37,7 @@
     </el-table-column>
     <el-table-column
       label="产品简称"
+      :show-overflow-tooltip="true"
       align="center"
       prop="abbreviation">
     </el-table-column>
@@ -57,24 +63,20 @@
       label="加入时间"
       align="center"
       sortable
+      width="100px"
       :show-overflow-tooltip="true"
       prop="entryTime">
     </el-table-column>
-    <el-table-column
-      label="审核状态"
-      align="center"
-      sortable
-      prop="state">
+    <el-table-column label="审核状态" align="center">
+      <template slot-scope="scope">
+        <span :class="scope.row.state==1 ? 'Success' : 'Info'">{{ scope.row.state==1 ? '开启' : '关闭' }}</span>
+      </template>
     </el-table-column>
-    <el-table-column 
-      label="操作"
-      align="center"
-      width="280px"      
-    >
+    <el-table-column label="操作" align="center" width="280px">
       <template slot-scope="scope">
         <el-button
           size="mini"
-          type="success"
+          :type="scope.row.state==1 ? 'success' : 'info'"
           icon="el-icon-check"
           @click="handleState(scope.$index, scope.row)"
         >状态</el-button>
@@ -98,6 +100,7 @@
       background
       layout="prev, pager, next"
       :total="total"
+      @current-change="handleCurrentChange"
     >
     </el-pagination>
   </div>
@@ -111,137 +114,7 @@
     data() {
       return {
         total: 150,
-        tableCommodity: [{
-          id: '12987122',
-          imgName: '巧乐兹巧乐兹巧乐大闯关游戏',
-          abbreviation: '巧乐兹',
-          keyword: '小霞姐小香蕉行加哦',
-          weight: '105',
-          price: '55.5元',
-          marketPrice: '66.5元',
-          address: '云南大理',
-          entryTime: '2017-8-15',
-          state: '通过',
-          imgBold: ['http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg', 'http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg'],
-          abstract: '啵啵啵啵啵啵不恶口教我减肥人口为热裤我'
-        }, {
-          id: '12987123',
-          imgName: '巧乐兹巧乐兹巧乐大闯关游戏',
-          abbreviation: '巧乐兹',
-          keyword: '小霞姐小香蕉行加哦',
-          weight: '105',
-          price: '55.5元',
-          marketPrice: '66.5元',
-          address: '云南大理',
-          entryTime: '2017-8-15',
-          state: '通过',
-          imgBold: ['http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg', 'http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg'],
-          abstract: '啵啵啵啵啵啵不恶口教我减肥人口为热裤我'
-        }, {
-          id: '12987125',
-          imgName: '巧乐兹巧乐兹巧乐大闯关游戏',
-          abbreviation: '巧乐兹',
-          keyword: '小霞姐小香蕉行加哦',
-          weight: '105',
-          price: '55.5元',
-          marketPrice: '66.5元',
-          address: '云南大理',
-          entryTime: '2017-8-15',
-          state: '通过',
-          imgBold: ['http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg', 'http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg'],
-          abstract: '啵啵啵啵啵啵不恶口教我减肥人口为热裤我'
-        }, {
-          id: '12987126',
-          imgName: '巧乐兹巧乐兹巧乐大闯关游戏',
-          abbreviation: '巧乐兹',
-          keyword: '小霞姐小香蕉行加哦',
-          weight: '105',
-          price: '55.5元',
-          marketPrice: '66.5元',
-          address: '云南大理',
-          entryTime: '2017-8-15',
-          state: '通过',
-          imgBold: ['http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg', 'http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg'],
-          abstract: '啵啵啵啵啵啵不恶口教我减肥人口为热裤我'
-        }, {
-          id: '12987126',
-          imgName: '巧乐兹巧乐兹巧乐大闯关游戏',
-          abbreviation: '巧乐兹',
-          keyword: '小霞姐小香蕉行加哦',
-          weight: '105',
-          price: '55.5元',
-          marketPrice: '66.5元',
-          address: '云南大理',
-          entryTime: '2017-8-15',
-          state: '通过',
-          imgBold: ['http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg', 'http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg'],
-          abstract: '啵啵啵啵啵啵不恶口教我减肥人口为热裤我'
-        }, {
-          id: '12987126',
-          imgName: '巧乐兹巧乐兹巧乐大闯关游戏',
-          abbreviation: '巧乐兹',
-          keyword: '小霞姐小香蕉行加哦',
-          weight: '105',
-          price: '55.5元',
-          marketPrice: '66.5元',
-          address: '云南大理',
-          entryTime: '2017-8-15',
-          state: '通过',
-          imgBold: ['http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg', 'http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg'],
-          abstract: '啵啵啵啵啵啵不恶口教我减肥人口为热裤我'
-        }, {
-          id: '12987126',
-          imgName: '巧乐兹巧乐兹巧乐大闯关游戏',
-          abbreviation: '巧乐兹',
-          keyword: '小霞姐小香蕉行加哦',
-          weight: '105',
-          price: '55.5元',
-          marketPrice: '66.5元',
-          address: '云南大理',
-          entryTime: '2017-8-15',
-          state: '通过',
-          imgBold: ['http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg', 'http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg'],
-          abstract: '啵啵啵啵啵啵不恶口教我减肥人口为热裤我'
-        }, {
-          id: '12987126',
-          imgName: '巧乐兹巧乐兹巧乐大闯关游戏',
-          abbreviation: '巧乐兹',
-          keyword: '小霞姐小香蕉行加哦',
-          weight: '105',
-          price: '55.5元',
-          marketPrice: '66.5元',
-          address: '云南大理',
-          entryTime: '2017-8-15',
-          state: '通过',
-          imgBold: ['http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg', 'http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg'],
-          abstract: '啵啵啵啵啵啵不恶口教我减肥人口为热裤我'
-        }, {
-          id: '12987126',
-          imgName: '巧乐兹巧乐兹巧乐大闯关游戏',
-          abbreviation: '巧乐兹',
-          keyword: '小霞姐小香蕉行加哦',
-          weight: '105',
-          price: '55.5元',
-          marketPrice: '66.5元',
-          address: '云南大理',
-          entryTime: '2017-8-15',
-          state: '通过',
-          imgBold: ['http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg', 'http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg'],
-          abstract: '啵啵啵啵啵啵不恶口教我减肥人口为热裤我'
-        }, {
-          id: '12987126',
-          imgName: '巧乐兹巧乐兹巧乐大闯关游戏',
-          abbreviation: '巧乐兹',
-          keyword: '小霞姐小香蕉行加哦',
-          weight: '105',
-          price: '55.5元',
-          marketPrice: '66.5元',
-          address: '云南大理',
-          entryTime: '2017-8-15',
-          state: '通过',
-          imgBold: ['http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg', 'http://www.bitauto.com/topics/ad_topic/xtlcx/images/edit/01.jpg'],
-          abstract: '啵啵啵啵啵啵不恶口教我减肥人口为热裤我'
-        }]
+        tableCommodity: []
       }
     },
     methods: {
@@ -262,6 +135,12 @@
           _this.tableCommodity = res.data.tableCommodity
           _this.total = res.data.total
         })
+      },
+      handleCurrentChange(val) {
+        console.log(`当前页: ${val}`)
+      },
+      handleSelectionChange(val) {
+        console.log(val)
       }
     },
     mounted() {
@@ -302,6 +181,20 @@
       width: 100%;
       margin: 20px 0;
       text-align: right;
+    }
+    .Success{
+      color: #fff;
+      display: inline-block;
+      padding: 2px 5px;
+      background: #87b87f;
+      border-radius: 5px;
+    }
+    .Info{
+      color: #fff;
+      display: inline-block;
+      padding: 2px 5px;
+      border-radius: 5px;
+      background: #abbac3;
     }
   }
 </style>
