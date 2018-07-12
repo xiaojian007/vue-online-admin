@@ -17,8 +17,10 @@ import Layout from '../views/layout/Layout'
 * redirect: noredirect           if `redirect:noredirect` will no redirct in the breadcrumb
 * name:'router-name'             the name is used by <keep-alive> (must set!!!)
 * meta : {
+    roles: ['admin','editor']     will control the page roles (you can set multiple roles)
     title: 'title'               the name show in submenu and breadcrumb (recommend set)
     icon: 'svg-name'             the icon show in the sidebar,
+    noCache: true                if true ,the page will no be cached(default is false)
   }
 **/
 export const constantRouterMap = [
@@ -28,13 +30,13 @@ export const constantRouterMap = [
   {
     path: '',
     component: Layout,
-    redirect: '/dashboard',
-    name: 'Dashboard',
+    redirect: 'dashboard',
     hidden: false, // 是否在导航栏显示,默认为false
     children: [{
       path: 'dashboard',
+      name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '系统主页', icon: 'dashboard' }
+      meta: { title: '系统主页', icon: 'dashboard', noCache: true }
     }]
   },
 

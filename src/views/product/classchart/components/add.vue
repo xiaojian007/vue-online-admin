@@ -170,7 +170,7 @@ export default {
     },
     // 文件上传成功时的钩子
     handleSuccess(response, file, fileList) {
-      console.log(response.files.file)
+      console.log('图片上传成功获得base64')
       this.addForm.imgBold.push(response.files.file) // 把图片base64值push到数组中
       console.log(this.addForm.imgBold)
       this.$message({
@@ -190,12 +190,18 @@ export default {
     },
     onBack() {
       this.$message({
-        message: '已取消新增',
+        message: '已取消',
         type: 'success'
       })
       const addOn = false
       this.$emit('back', addOn)
     }
+  },
+  props: {
+    modifyData: String
+  },
+  mounted() {
+    console.log(this.modifyData)
   }
 }
 </script>
