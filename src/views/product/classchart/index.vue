@@ -45,9 +45,10 @@ export default {
   },
 
   methods: {
+    // 编辑
     modify(row) {
-      console.log(row)
       this.addOn = true
+      this.modifyData = row
     },
     // 新增
     addproduct(childValue) {
@@ -93,7 +94,8 @@ export default {
       addOn: false,
       restaurants: [],
       timeout: null,
-      modifyData: ''
+      modifyData: null,
+      addBoolean: false
     }
   }
 }

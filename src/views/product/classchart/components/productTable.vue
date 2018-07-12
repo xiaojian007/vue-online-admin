@@ -1,10 +1,9 @@
 <template>
 <div class="table">
-  <el-table
+  <el-table 
     :data="tableCommodity"
     v-loading="loading"
-    @selection-change="handleSelectionChange"
-    style="width: 100%">
+    @selection-change="handleSelectionChange">
     <el-table-column
       type="selection"
       width="55">
@@ -126,7 +125,6 @@
     },
     methods: {
       handleEdit(index, row) {
-        // console.log(index, row)
         this.$emit('modify', row) // 向父级传递事件
       },
       handleDelete(index, row) {
@@ -186,7 +184,13 @@
     }
   }
 </script>
-
+<style rel="stylesheet/scss" lang="scss">
+  .table {
+    table {
+      width: 100% !important;
+    }
+  }
+</style>
 <style rel="stylesheet/scss" lang="scss" scoped>
   .table .el-table .cell{
     font-size: 22px;

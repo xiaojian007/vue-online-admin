@@ -101,10 +101,10 @@ export default {
           }
         },
         legend: {
-          data: ['已出售', '未出售']
+          data: ['上周总量', '本周总量']
         },
         series: [{
-          name: '已出售', itemStyle: {
+          name: '上周总量', itemStyle: {
             normal: {
               color: '#FF005A',
               lineStyle: {
@@ -120,7 +120,7 @@ export default {
           animationEasing: 'cubicInOut'
         },
         {
-          name: '未出售',
+          name: '本周总量',
           smooth: true,
           type: 'line',
           itemStyle: {

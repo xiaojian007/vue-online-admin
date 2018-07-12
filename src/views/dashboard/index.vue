@@ -1,12 +1,22 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">name:{{name}}</div>
-    <div class="dashboard-text">roles:<span v-for='role in roles' :key='role'>{{role}}</span></div>
+    <!-- <div class="dashboard-text">name:{{name}}</div>
+    <div class="dashboard-text">roles:<span v-for='role in roles' :key='role'>{{role}}</span></div> -->
     <!-- 头部流量数字 -->
     <panel-group @handleSetLineChartData="handleSetLineChartData"></panel-group>
     <!-- 线性图表 -->
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
       <line-chart :chart-data="lineChartData"></line-chart>
+    </el-row>
+    <el-row>
+      <!-- 圆图表 -->
+      <el-col :span="12">
+        <commodity-chart></commodity-chart>
+      </el-col>
+      <!-- 柱形表 -->      
+      <el-col :span="12">
+        <histogram></histogram>
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -15,6 +25,8 @@
 import { mapGetters } from 'vuex'
 import PanelGroup from './components/PanelGroup'
 import LineChart from './components/LineChart'
+import CommodityChart from './components/CommodityChart'
+import Histogram from './components/Histogram'
 
 const lineChartData = {
   newVisitis: {
@@ -49,7 +61,9 @@ export default {
   },
   components: {
     PanelGroup,
-    LineChart
+    LineChart,
+    CommodityChart,
+    Histogram
   },
   methods: {
     handleSetLineChartData(type) {

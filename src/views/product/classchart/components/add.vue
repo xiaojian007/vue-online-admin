@@ -85,7 +85,7 @@ export default {
       dialogVisible: false,
       formLabelWidth: '100px',
       addForm: {
-        imgName: '',
+        imgName: '111',
         abbreviation: '',
         number: '',
         address: '',
@@ -198,10 +198,12 @@ export default {
     }
   },
   props: {
-    modifyData: String
+    modifyData: Object
   },
-  mounted() {
-    console.log(this.modifyData)
+  watch: {
+    modifyData(val) {
+      this.addForm = val
+    }
   }
 }
 </script>
