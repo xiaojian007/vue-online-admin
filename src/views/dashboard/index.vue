@@ -10,11 +10,11 @@
     </el-row>
     <el-row>
       <!-- 圆图表 -->
-      <el-col :span="12">
+      <el-col :span="12" :xs="24">
         <commodity-chart></commodity-chart>
       </el-col>
       <!-- 柱形表 -->      
-      <el-col :span="12">
+      <el-col :span="12" :xs="24">
         <histogram></histogram>
       </el-col>
     </el-row>

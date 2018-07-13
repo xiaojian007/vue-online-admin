@@ -4,9 +4,7 @@
 
 <script>
   import echarts from 'echarts'
-  import {
-    debounce
-  } from '@/utils'
+  import { debounce } from '@/utils'
   export default {
     name: 'Histogram',
     props: {

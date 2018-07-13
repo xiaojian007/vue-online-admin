@@ -72,7 +72,7 @@ export default {
           {
             name: '访问来源',
             type: 'pie',
-            radius: '70%',
+            radius: '65%',
             avoidLabelOverlap: false,
             itemStyle: {
               emphasis: {

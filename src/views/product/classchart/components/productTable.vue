@@ -3,7 +3,7 @@
   <el-table 
     :data="tableCommodity"
     v-loading="loading"
-    @selection-change="handleSelectionChange">
+    @select="handleSelectionChange">
     <el-table-column
       type="selection"
       width="55">
@@ -129,6 +129,23 @@
       },
       handleDelete(index, row) {
         console.log(index, row)
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          // 删除某一条数据
+          this.tableCommodity.splice(0, 1)
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
       },
       handleState(index, row) {
         // console.log(index, row)
@@ -166,8 +183,8 @@
         this.pagenub = val
         this.gitList()
       },
-      handleSelectionChange(val) {
-        console.log(val)
+      handleSelectionChange(selection, row) {
+        console.log(selection, row)
       }
     },
     mounted() {
