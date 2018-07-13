@@ -67,7 +67,7 @@
       <el-form-item>
         <el-button type="primary" @click="onSubmit('addForm', addForm)">立即创建</el-button>
         <el-button @click="resetForm('addForm')">重置</el-button>
-        <el-button @click="onBack">取消</el-button>
+        <el-button @click="onBack('addForm')">取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -85,7 +85,7 @@ export default {
       dialogVisible: false,
       formLabelWidth: '100px',
       addForm: {
-        imgName: '111',
+        imgName: '',
         abbreviation: '',
         number: '',
         address: '',
@@ -188,7 +188,8 @@ export default {
         type: 'error'
       })
     },
-    onBack() {
+    onBack(formName) {
+      // this.$refs[formName].resetFields()
       this.$message({
         message: '已取消',
         type: 'success'
