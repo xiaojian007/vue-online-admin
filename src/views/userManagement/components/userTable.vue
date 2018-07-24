@@ -6,24 +6,24 @@
       <el-table-column
         align="center"
         prop="type"
-        label="企业类型"
+        label="姓名"
         width="180">
       </el-table-column>
       <el-table-column
         align="center"
         prop="name"
-        label="企业名称"
+        label="手机号"
         width="220">
       </el-table-column>
       <el-table-column
         align="center"
         prop="contacts"
-        label="联系人">
+        label="用户名">
       </el-table-column>
       <el-table-column
         align="center"
         prop="number"
-        label="联系号码">
+        label="密码">
       </el-table-column>
       <el-table-column
         align="center"
@@ -40,14 +40,13 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
 
 export default {
   data() {
     return {
       tableData: [{
-        type: '协议',
-        name: '吴江市新宏业电器有限公司',
+        type: '111',
+        name: '姓名',
         contacts: '黄晓明',
         number: '021-65221564',
         state: 1
@@ -74,18 +73,6 @@ export default {
   },
   filters: {
 
-  },
-  created() {
-    this.fetchData()
-  },
-  methods: {
-    fetchData() {
-      this.listLoading = true
-      getList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
-    }
   }
 }
 </script>

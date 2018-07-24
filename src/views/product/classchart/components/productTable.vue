@@ -191,12 +191,16 @@
       this.gitList()
     },
     props: {
-      filterText: String
+      filterText: String,
+      addOneData: Object
     },
     watch: {
       filterText(val) {
         this.filters.name = val
         this.gitList()
+      },
+      addOneData(val) {
+        this.tableCommodity.unshift(val)
       }
     }
   }

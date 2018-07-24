@@ -4,11 +4,6 @@
     <div class="search-style">
       <div class="title-names">搜索查询</div>
       产品名称：
-      <!-- <el-input 
-        placeholder="请输入内容" 
-        v-model="filterText">
-        <i slot="prefix" class="el-input__icon el-icon-search"></i>
-      </el-input> -->
       <el-autocomplete
         v-model="filterText"
         :fetch-suggestions="querySearchAsync"
@@ -20,16 +15,14 @@
     <add-delete v-show="!addOn" v-on:add="addproduct"></add-delete>
     <!-- 列表树状图 -->
     <div class="list">
-      <!-- <Tree v-show="!addOn" :filterText="filterText"></Tree> -->
-      <add v-show="addOn" v-on:back="back" :modifyData="modifyData"></add>
-      <product-table v-show="!addOn" v-on:modify="modify" :filterText="filterText"></product-table>
+      <add v-show="addOn" v-on:back="back" :modifyData="modifyData" v-on:addTo="addTo"></add>
+      <product-table v-show="!addOn" v-on:modify="modify" :filterText="filterText" :addOneData="addOneData"></product-table>
     </div>
   </div>
 </template>
 
 <script>
 // 组件
-import Tree from './components/productList'
 import productTable from './components/productTable'
 import addDelete from './components/adddelete'
 import add from './components/add'
@@ -37,7 +30,7 @@ import add from './components/add'
 import { getLabelList } from '@/api/index'
 
 export default {
-  components: { Tree, addDelete, add, productTable },
+  components: { addDelete, add, productTable },
   watch: {
     filterText(val) {
       this.filterText = val
@@ -45,16 +38,21 @@ export default {
   },
 
   methods: {
-    // 编辑
+    // 新增后传值父级接收
+    addTo(row) {
+      this.addOneData = row
+      this.addOn = false
+    },
+    // 点击 编辑按钮
     modify(row) {
       this.addOn = true
       this.modifyData = row
     },
-    // 新增
+    // 点击 新增按钮跳转
     addproduct(childValue) {
       this.addOn = childValue
     },
-    // 返回
+    // 点击  返回按钮
     back(childValue) {
       this.addOn = childValue
     },
@@ -68,7 +66,6 @@ export default {
     querySearchAsync(queryString, cb) {
       var restaurants = this.restaurants
       var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants
-
       clearTimeout(this.timeout)
       this.timeout = setTimeout(() => {
         cb(results)
@@ -95,6 +92,7 @@ export default {
       restaurants: [],
       timeout: null,
       modifyData: null,
+      addOneData: null,
       addBoolean: false
     }
   }

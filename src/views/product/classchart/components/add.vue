@@ -146,9 +146,11 @@ export default {
   },
   methods: {
     onSubmit(formName, addForm) {
+      const _this = this
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
+          // 新增给父级传值
+          _this.$emit('addTo', addForm)
           console.log(addForm)
         } else {
           this.$message.error('您肯定少填写的一个或者多个内容')

@@ -1,6 +1,14 @@
 import request from '@/utils/request'
 
 export function login(username, password) {
+  console.log(request({
+    url: '/user/login',
+    method: 'post',
+    data: {
+      username,
+      password
+    }
+  }))
   return request({
     url: '/user/login',
     method: 'post',
