@@ -1,0 +1,196 @@
+<template>
+  <div :class="className" :style="{height:height,width:width}"></div>
+</template>
+
+<script>
+import { debounce } from '@/utils'
+import echarts from 'echarts'
+require('echarts-wordcloud')
+export default {
+  name: 'Histogram',
+  props: {
+    className: {
+      type: String,
+      default: 'myChart'
+    },
+    width: {
+      type: String,
+      default: '100%'
+    },
+    autoResize: {
+      type: Boolean,
+      default: true
+    },
+    height: {
+      type: String,
+      default: '400px'
+    }
+  },
+  data() {
+    return {
+      myChart: null
+    }
+  },
+  mounted() {
+    this.initCharts()
+    if (this.autoResize) {
+      this.__resizeHanlder = debounce(() => {
+        if (this.myChart) {
+          this.myChart.resize()
+        }
+      }, 100)
+      window.addEventListener('resize', this.__resizeHanlder)
+    }
+    // 监听侧边栏的变化
+    // const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
+    // sidebarElm.addEventListener('transitionend', this.__resizeHanlder)
+  },
+  beforeDestroy() {
+    if (!this.myChart) {
+      return
+    }
+    if (this.autoResize) {
+      window.removeEventListener('resize', this.__resizeHanlder)
+    }
+    const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
+    sidebarElm.removeEventListener('transitionend', this.__resizeHanlder)
+    this.myChart.dispose()
+    this.myChart = null
+  },
+  methods: {
+    initCharts() {
+      this.myChart = echarts.init(this.$el)
+      this.setOptions()
+    },
+    setOptions() {
+      this.myChart.setOption({
+        tooltip: {},
+        series: [
+          {
+            type: 'wordCloud',
+            gridSize: 2,
+            sizeRange: [12, 50],
+            rotationRange: [-90, 90],
+            shape: 'pentagon',
+            width: this.width,
+            height: this.height,
+            textStyle: {
+              normal: {
+                color: function() {
+                  return (
+                    'rgb(' +
+                    [
+                      Math.round(Math.random() * 255),
+                      Math.round(Math.random() * 255),
+                      Math.round(Math.random() * 255)
+                    ].join(',') +
+                    ')'
+                  )
+                }
+              },
+              emphasis: {
+                shadowBlur: 10,
+                shadowColor: '#333'
+              }
+            },
+            data: [
+              {
+                name: 'Sam S Club',
+                value: 10000,
+                textStyle: {
+                  normal: {
+                    color: 'black'
+                  },
+                  emphasis: {
+                    color: 'red'
+                  }
+                }
+              },
+              {
+                name: 'Macys',
+                value: 6181
+              },
+              {
+                name: 'Amy Schumer',
+                value: 4386
+              },
+              {
+                name: 'Jurassic World',
+                value: 4055
+              },
+              {
+                name: 'Charter Communications',
+                value: 2467
+              },
+              {
+                name: 'Chick Fil A',
+                value: 2244
+              },
+              {
+                name: 'Planet Fitness',
+                value: 1898
+              },
+              {
+                name: 'Pitch Perfect',
+                value: 1484
+              },
+              {
+                name: 'Express',
+                value: 1112
+              },
+              {
+                name: 'Home',
+                value: 965
+              },
+              {
+                name: 'Johnny Depp',
+                value: 847
+              },
+              {
+                name: 'Lena Dunham',
+                value: 582
+              },
+              {
+                name: 'Lewis Hamilton',
+                value: 555
+              },
+              {
+                name: 'KXAN',
+                value: 550
+              },
+              {
+                name: 'Mary Ellen Mark',
+                value: 462
+              },
+              {
+                name: 'Farrah Abraham',
+                value: 366
+              },
+              {
+                name: 'Rita Ora',
+                value: 360
+              },
+              {
+                name: 'Serena Williams',
+                value: 282
+              },
+              {
+                name: 'NCAA baseball tournament',
+                value: 273
+              },
+              {
+                name: 'Point Break',
+                value: 265
+              }
+            ]
+          }
+        ],
+        title: {
+          text: '词云图',
+          x: 'center'
+        }
+      })
+    }
+  }
+}
+</script>

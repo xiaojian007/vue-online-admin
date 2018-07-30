@@ -10,12 +10,15 @@
     </el-row>
     <el-row>
       <!-- 圆图表 -->
-      <el-col :span="12" :xs="24">
+      <el-col :span="8" :xs="24">
         <commodity-chart></commodity-chart>
       </el-col>
       <!-- 柱形表 -->      
-      <el-col :span="12" :xs="24">
+      <el-col :span="8" :xs="24">
         <histogram></histogram>
+      </el-col>
+      <el-col :span="8" :xs="24">
+        <cloud-graph></cloud-graph>
       </el-col>
     </el-row>
   </div>
@@ -27,6 +30,7 @@ import PanelGroup from './components/PanelGroup'
 import LineChart from './components/LineChart'
 import CommodityChart from './components/CommodityChart'
 import Histogram from './components/Histogram'
+import CloudGraph from './components/CloudGraph'
 
 const lineChartData = {
   newVisitis: {
@@ -63,7 +67,8 @@ export default {
     PanelGroup,
     LineChart,
     CommodityChart,
-    Histogram
+    Histogram,
+    CloudGraph
   },
   methods: {
     handleSetLineChartData(type) {
