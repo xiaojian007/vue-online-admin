@@ -1,76 +1,67 @@
 <template>
   <div class="user-list">
-    <el-input
-      placeholder="输入关键字进行过滤"
-      v-model="filterText">
-    </el-input>
-    <el-tree
-      class="filter-tree"
-      show-checkbox
-      :data="userList"
-      :props="defaultProps"
-      default-expand-all
-      :filter-node-method="filterNode"
-      ref="userList">
-    </el-tree>
+    <h4 class="title">管理员分类列表</h4>
+    <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
   </div>
 </template>
 
 <script>
-  export default {
-    watch: {
-      filterText(val) {
-        this.$refs.userList.filter(val)
-      }
-    },
-
-    methods: {
-      filterNode(value, data) {
-        if (!value) return true
-        return data.label.indexOf(value) !== -1
-      }
-    },
-
-    data() {
-      return {
-        filterText: '',
-        userList: [{
-          id: 1,
-          label: '超级管理员',
-          children: [{
-            id: 4,
-            label: '小贱'
-          }]
+export default {
+  data() {
+    return {
+      data: [{
+        label: '超级管理员',
+        children: [{
+          label: '管理员1'
         }, {
-          id: 2,
-          label: '文章上传组',
-          children: [{
-            id: 5,
-            label: '小李'
-          }, {
-            id: 6,
-            label: '小王'
-          }]
+          label: '管理员2'
+        }]
+      }, {
+        label: '一级 2',
+        children: [{
+          label: '二级 2-1'
         }, {
-          id: 3,
-          label: '视频上传部',
-          children: [{
-            id: 7,
-            label: '小孙'
-          }, {
-            id: 8,
-            label: '小周'
-          }]
-        }],
-        defaultProps: {
-          children: 'children',
-          label: 'label'
-        }
+          label: '二级 2-2'
+        }]
+      }, {
+        label: '一级 3',
+        children: [{
+          label: '二级 3-1'
+        }, {
+          label: '二级 3-2'
+        }]
+      }],
+      defaultProps: {
+        children: 'children',
+        label: 'label'
       }
     }
+  },
+  methods: {
+    handleNodeClick(data) {
+      console.log(data)
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>
-
+  .user-list .el-tree-node__content{
+    padding: 10px 0;
+  }
+  .user-list{
+    border-left: 1px solid #CCC;
+    border-right:  1px solid #CCC;
+    border-top:  1px solid #CCC;
+    .title{
+      margin: 0;
+      background: #62A8D1;
+      color: #fff;
+      box-sizing: content-box;
+      line-height: 38px;
+      border-bottom: 1px solid #DDD;
+      padding-left: 12px;
+    }
+    
+  }
 </style>

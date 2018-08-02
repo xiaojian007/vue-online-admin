@@ -28,6 +28,10 @@ export function getInfo(token) {
 }
 
 export function logout() {
+  console.log(request({
+    url: '/user/logout',
+    method: 'post'
+  }))
   return request({
     url: '/user/logout',
     method: 'post'

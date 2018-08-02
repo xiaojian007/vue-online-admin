@@ -33,12 +33,12 @@ export const dataExport = params => {
 
 // 获取商品列表axios
 export const getCommodityList = params => {
-  return instance.get(`https://easy-mock.com/mock/5b29fc5d74cbd41bddf1e304/trainer/tableCommodity`, params)
+  return instance.get(`/api/tableCommodity`, params)
 }
 
 // 获取label列表axios
 export const getLabelList = params => {
-  return instance.get(`https://easy-mock.com/mock/5b29fc5d74cbd41bddf1e304/trainer/labelList`, params)
+  return instance.get(`/api/labelList`, params)
 }
 
 // 新增axios

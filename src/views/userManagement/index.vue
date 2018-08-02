@@ -15,10 +15,10 @@
     </div>
     <div class="search-table">
       <el-row>
-        <el-col :span="5" :xs="24">
+        <el-col :span="4" :xs="24">
           <user-list></user-list>
         </el-col>
-        <el-col :span="19" :xs="24">
+        <el-col :span="20" :xs="24">
           <user-table></user-table>
         </el-col>
       </el-row>
@@ -101,6 +101,7 @@ export default {
     display: flex;
   }
   .search-table{
+    margin-top: 10px;
     width: 100%;
   }
 }
