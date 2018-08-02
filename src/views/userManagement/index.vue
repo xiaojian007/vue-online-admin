@@ -3,7 +3,7 @@
     <!-- 搜索查询 -->
     <div class="search-style">
       <div class="title-names">查找用户</div>
-      请输入用户名：
+      用户名：
       <el-autocomplete
         class="inline-input"
         v-model="username"

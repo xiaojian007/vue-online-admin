@@ -101,3 +101,16 @@ export function debounce(func, wait, immediate) {
     return result
   }
 }
+
+// 获取dom距离浏览器底部的高度
+export function ObtainBottom(obj) {
+  var clientHeight = 0
+  if (document.body.clientHeight && document.documentElement.clientHeight) {
+    clientHeight = (document.body.clientHeight < document.documentElement.clientHeight) ? document.body.clientHeight : document.documentElement.clientHeight
+  } else {
+    clientHeight = (document.body.clientHeight > document.documentElement.clientHeight) ? document.body.clientHeight : document.documentElement.clientHeight
+  }
+  console.log(clientHeight)
+  const obt = clientHeight - obj.offsetTop
+  return obt
+}
