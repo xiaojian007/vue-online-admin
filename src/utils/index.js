@@ -110,7 +110,7 @@ export function ObtainBottom(obj) {
   } else {
     clientHeight = (document.body.clientHeight > document.documentElement.clientHeight) ? document.body.clientHeight : document.documentElement.clientHeight
   }
-  console.log(clientHeight)
-  const obt = clientHeight - obj.offsetTop
+  // 20 为padding的值
+  const obt = clientHeight - obj.getBoundingClientRect().top - 20
   return obt
 }

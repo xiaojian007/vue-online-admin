@@ -1,6 +1,6 @@
 <template>
   <div class="user-list" ref="userList" :style="{height:objHeight+'px'}">
-    <h4 class="title">管理员分类列表</h4>
+    <h4 class="title" @click="obt()">管理员分类列表</h4>
     <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
   </div>
 </template>
@@ -46,13 +46,15 @@ export default {
       console.log(data)
     },
     obt() {
-      console.log(this.$refs.userList)
-      console.log(this.$refs.userList.offsetWidth)
+      // console.log(this.$refs.userList.getBoundingClientRect().top)
       this.objHeight = ObtainBottom(this.$refs.userList)
     }
   },
   mounted() {
-    this.obt()
+    var _this = this
+    this.$nextTick(() => {
+      _this.obt()
+    })
   },
   beforeDestroy() {
   }
