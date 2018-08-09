@@ -22,12 +22,13 @@
 </template>
 
 <script>
+
 // 组件
 import productTable from './components/productTable'
 import addDelete from './components/adddelete'
 import add from './components/add'
 // function
-import { getLabelList } from '@/api/login.js'
+import { getLabelList } from '@/api/index.js'
 
 export default {
   components: { addDelete, add, productTable },

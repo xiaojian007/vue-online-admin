@@ -38,14 +38,3 @@ export function logout() {
   })
 }
 
-export function getLabelList(params) {
-  return request({
-    url: '/labelList',
-    method: 'get',
-    params
-  })
-}
-// 获取label列表axios
-// export const getLabelList = params => {
-//   return instance.get(`/api/labelList`, params)
-// }
