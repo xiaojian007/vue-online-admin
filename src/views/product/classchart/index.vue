@@ -27,7 +27,7 @@ import productTable from './components/productTable'
 import addDelete from './components/adddelete'
 import add from './components/add'
 // function
-import { getLabelList } from '@/api/index'
+import { getLabelList } from '@/api/login.js'
 
 export default {
   components: { addDelete, add, productTable },
@@ -59,7 +59,11 @@ export default {
     // input输入框下拉查询开始
     loadAll() {
       var _this = this
+      // getLabelList().then((res) => {
+      //   _this.restaurants = res.data.label
+      // })
       getLabelList().then((res) => {
+        // console.log(res)
         _this.restaurants = res.data.label
       })
     },

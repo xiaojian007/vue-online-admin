@@ -1,14 +1,14 @@
 import request from '@/utils/request'
 
 export function login(username, password) {
-  console.log(request({
-    url: '/user/login',
-    method: 'post',
-    data: {
-      username,
-      password
-    }
-  }))
+  // console.log(request({
+  //   url: '/user/login',
+  //   method: 'post',
+  //   data: {
+  //     username,
+  //     password
+  //   }
+  // }))
   return request({
     url: '/user/login',
     method: 'post',
@@ -37,3 +37,15 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function getLabelList(params) {
+  return request({
+    url: '/labelList',
+    method: 'get',
+    params
+  })
+}
+// 获取label列表axios
+// export const getLabelList = params => {
+//   return instance.get(`/api/labelList`, params)
+// }
