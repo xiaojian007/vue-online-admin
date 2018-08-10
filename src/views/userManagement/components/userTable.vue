@@ -28,7 +28,7 @@
       <el-table-column
         align="center"
         prop="state"
-        label="状态">
+        label="职位">
       </el-table-column>
       <el-table-column
         align="center"
