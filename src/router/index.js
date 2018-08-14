@@ -45,18 +45,18 @@ export const constantRouterMap = [
     component: Layout,
     redirect: 'classchart',
     name: 'Example',
-    meta: { title: '产品管理', icon: 'example' },
+    meta: { title: '项目管理', icon: 'example' },
     children: [
       {
         path: 'classchart',
         name: 'Classchart',
         component: () => import('@/views/product/classchart/index'),
-        meta: { title: '产品类表', icon: 'tree' }
+        meta: { title: '素材管理', icon: 'tree' }
       }, {
         path: 'brand',
         name: 'Brand',
         component: () => import('@/views/product/brand/index'),
-        meta: { title: '品牌管理', icon: 'tree' }
+        meta: { title: '工单管理', icon: 'tree' }
       },
       {
         path: 'classification',

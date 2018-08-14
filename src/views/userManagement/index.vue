@@ -57,10 +57,10 @@ export default {
     },
     loadAll() {
       return [
-        { 'value': '三全鲜食（北新泾店）' },
-        { 'value': 'Hot honey 首尔炸鸡（仙霞路）' },
-        { 'value': '新旺角茶餐厅' },
-        { 'value': '泷千家(天山西路店)' }
+        { 'value': '小贱1' },
+        { 'value': '小贱4' },
+        { 'value': '小贱2' },
+        { 'value': '小贱3' }
       ]
     },
     handleSelect(item) {

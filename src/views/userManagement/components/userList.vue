@@ -21,7 +21,7 @@ export default {
           label: '管理员2'
         }]
       }, {
-        label: '商务编辑管理员',
+        label: '华东组',
         children: [{
           label: '商务编辑管理员1'
         }, {
@@ -32,6 +32,11 @@ export default {
           label: '商务编辑管理员2'
         }, {
           label: '商务编辑管理员2'
+        }]
+      }, {
+        label: '华北组',
+        children: [{
+          label: '商务编辑管理员1'
         }, {
           label: '商务编辑管理员2'
         }, {
@@ -40,12 +45,24 @@ export default {
           label: '商务编辑管理员2'
         }, {
           label: '商务编辑管理员2'
+        }]
+      }, {
+        label: '华南组',
+        children: [{
+          label: '商务编辑管理员1'
         }, {
           label: '商务编辑管理员2'
         }, {
           label: '商务编辑管理员2'
         }, {
           label: '商务编辑管理员2'
+        }, {
+          label: '商务编辑管理员2'
+        }]
+      }, {
+        label: '电商组',
+        children: [{
+          label: '商务编辑管理员1'
         }, {
           label: '商务编辑管理员2'
         }, {
