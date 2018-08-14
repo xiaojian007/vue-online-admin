@@ -27,7 +27,7 @@
         <el-date-picker v-model="times" type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="项目开始" end-placeholder="项目结束" :picker-options="pickerOptions">
         </el-date-picker>
         <el-button type="primary" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" icon="el-icon-edit">添加</el-button>
+        <el-button type="primary" @click="handleCreate" icon="el-icon-edit">添加</el-button>
         <el-button type="primary" icon="el-icon-download">导出</el-button>
         <span class="right">共计：{{totalNub}}个工单</span>
       </div>
@@ -86,7 +86,7 @@
         </el-table-column>
         <el-table-column align="center" width="180" label="操作">
           <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            <el-button size="mini" @click="handleUpdate(scope.$index, scope.row)">编辑</el-button>
             <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -101,6 +101,12 @@
         </el-pagination>
       </div>
     </div>
+    <!-- 新增 -->
+    <el-dialog title="项目新增" :visible.sync="dialogFormVisible">
+    </el-dialog>
+    <!-- 修改 -->
+    <el-dialog title="项目修改" :visible.sync="dialogPvVisible">
+    </el-dialog>
   </div>
 </template>
 
@@ -108,6 +114,8 @@
 export default {
   data() {
     return {
+      dialogFormVisible: false,
+      dialogPvVisible: false,
       pageSize: 10,
       total: 100,
       totalNub: 1000,
@@ -630,14 +638,18 @@ export default {
     }
   },
   methods: {
-    handleEdit(index, row) {
+    handleUpdate(index, row) {
       console.log(index, row)
+      this.dialogPvVisible = true
     },
     handleDelete(index, row) {
       console.log(index, row)
     },
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`)
+    },
+    handleCreate() {
+      this.dialogFormVisible = true
     }
   }
 }
