@@ -29,22 +29,22 @@ export default {
   data() {
     return {
       charts: '',
-      opinion: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
+      opinion: ['AE', 'C4D', '插画', '插件', '教程'],
       opinionData: [{
         value: 335,
-        name: '直接访问'
+        name: 'AE'
       }, {
         value: 310,
-        name: '邮件营销'
+        name: 'C4D'
       }, {
         value: 234,
-        name: '联盟广告'
+        name: '插画'
       }, {
         value: 135,
-        name: '视频广告'
+        name: '插件'
       }, {
         value: 1548,
-        name: '搜索引擎'
+        name: '教程'
       }]
     }
   },
@@ -56,7 +56,7 @@ export default {
     setOptions(id) {
       this.myChart.setOption({
         title: {
-          text: '访问方式',
+          text: '素材库',
           x: 'center'
         },
         tooltip: {
@@ -70,7 +70,7 @@ export default {
         },
         series: [
           {
-            name: '访问来源',
+            name: '占比率',
             type: 'pie',
             radius: '65%',
             avoidLabelOverlap: false,

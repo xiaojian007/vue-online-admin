@@ -7,14 +7,14 @@
     <div class="el-dropdown-ems">
       <el-dropdown trigger="click">
         <span class="el-dropdown-link">
-          <el-badge :value="200" :max="99" class="item">
+          <el-badge :value="200" :max="9" class="item">
             <el-button size="small">消息</el-button>
           </el-badge>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>新闻评论</el-dropdown-item>
-          <el-dropdown-item>新订单</el-dropdown-item>
-          <el-dropdown-item>粉丝</el-dropdown-item>
+          <el-dropdown-item>敬请期待</el-dropdown-item>
+          <el-dropdown-item>敬请期待</el-dropdown-item>
+          <el-dropdown-item>敬请期待</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -28,10 +28,10 @@
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <router-link class="inlineBlock" to="/">
           <el-dropdown-item>
-            设置
+            敬请期待
           </el-dropdown-item>
           <el-dropdown-item>
-            个人资料
+            敬请期待
           </el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>

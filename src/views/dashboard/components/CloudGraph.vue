@@ -186,7 +186,7 @@ export default {
           }
         ],
         title: {
-          text: '词云图',
+          text: '分配图',
           x: 'center'
         }
       })

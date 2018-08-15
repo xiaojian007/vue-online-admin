@@ -48,17 +48,19 @@ export const constantRouterMap = [
     meta: { title: '项目管理', icon: 'example' },
     children: [
       {
+        path: 'brand',
+        name: 'Brand',
+        component: () => import('@/views/product/brand/index'),
+        meta: {
+          title: '工单管理',
+          icon: 'tree'
+        }
+      }, {
         path: 'classchart',
         name: 'Classchart',
         component: () => import('@/views/product/classchart/index'),
         meta: { title: '素材管理', icon: 'tree' }
       }, {
-        path: 'brand',
-        name: 'Brand',
-        component: () => import('@/views/product/brand/index'),
-        meta: { title: '工单管理', icon: 'tree' }
-      },
-      {
         path: 'classification',
         name: 'Classification',
         component: () => import('@/views/product/classification/index'),
@@ -72,7 +74,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: 'advertisement',
     name: 'Picture',
-    meta: { title: '图片管理', icon: 'excel' },
+    meta: { title: '大区管理', icon: 'excel' },
     children: [
       {
         path: 'advertisement',
@@ -110,7 +112,7 @@ export const constantRouterMap = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        meta: { title: '关于', icon: 'form' }
       }
     ]
   },

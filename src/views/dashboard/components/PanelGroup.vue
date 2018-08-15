@@ -8,7 +8,7 @@
         </div>
         <!-- 数字+名称 -->
         <div class="card-panel-description">
-          <div class="card-panel-text">本周访问量</div>
+          <div class="card-panel-text">本月工单量</div>
           <count-to class="card-panel-num" :startVal="0" :endVal="102400" :duration="2600"></count-to>
         </div>
       </div>
@@ -20,7 +20,7 @@
           <svg-icon icon-class="message" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">本周订单</div>
+          <div class="card-panel-text">本月广告量</div>
           <count-to class="card-panel-num" :startVal="0" :endVal="81212" :duration="3000"></count-to>
         </div>
       </div>
@@ -32,7 +32,7 @@
           <svg-icon icon-class="money" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">本周收入</div>
+          <div class="card-panel-text">本月修改量</div>
           <count-to class="card-panel-num" :startVal="0" :endVal="9280" :duration="3200"></count-to>
         </div>
       </div>
@@ -44,7 +44,7 @@
           <svg-icon icon-class="shoppingCard" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">本周订单</div>
+          <div class="card-panel-text">本月订单</div>
           <count-to class="card-panel-num" :startVal="0" :endVal="13600" :duration="3600"></count-to>
         </div>
       </div>

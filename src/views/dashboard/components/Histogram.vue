@@ -64,16 +64,16 @@
       setOptions() {
         this.myChart.setOption({
           title: {
-            text: '本周销售排行榜',
+            text: '本周工单排行榜',
             x: 'center'
           },
           tooltip: {},
           xAxis: {
-            data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+            data: ['张三', '李四', '王五', '周六', '小七', '陈八']
           },
           yAxis: {},
           series: [{
-            name: '销量',
+            name: '工单量',
             type: 'bar',
             data: [500, 200, 100, 90, 70, 20]
           }]

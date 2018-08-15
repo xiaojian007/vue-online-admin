@@ -75,7 +75,7 @@ export default {
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
         xAxis: {
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+          data: ['第一周', '第二周', '第三周', '第四周'],
           boundaryGap: false,
           axisTick: {
             show: false
@@ -101,10 +101,10 @@ export default {
           }
         },
         legend: {
-          data: ['上周总量', '本周总量']
+          data: ['上月总量', '本月总量']
         },
         series: [{
-          name: '上周总量', itemStyle: {
+          name: '上月总量', itemStyle: {
             normal: {
               color: '#FF005A',
               lineStyle: {
@@ -120,7 +120,7 @@ export default {
           animationEasing: 'cubicInOut'
         },
         {
-          name: '本周总量',
+          name: '本月总量',
           smooth: true,
           type: 'line',
           itemStyle: {
