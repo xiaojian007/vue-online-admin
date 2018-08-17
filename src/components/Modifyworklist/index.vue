@@ -44,7 +44,7 @@
           </el-select>
         </el-form-item>
         <el-form-item class="status" label="组别" prop="group">
-          <el-select v-model="dataList.group" :placeholder="dataList.group">
+          <el-select v-model="dataList.group" placeholder="dataList.group">
             <el-option label="电商组" value="电商组"></el-option>
             <el-option label="华北组" value="华北组"></el-option>
             <el-option label="华东组" value="华东组"></el-option>
