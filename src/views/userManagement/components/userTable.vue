@@ -5,37 +5,44 @@
       style="width: 100%">
       <el-table-column
         align="center"
-        prop="type"
+        prop="name"
         label="姓名"
         width="180">
       </el-table-column>
       <el-table-column
         align="center"
-        prop="name"
+        prop="phoneNumber"
         label="手机号"
         width="220">
       </el-table-column>
       <el-table-column
         align="center"
-        prop="contacts"
+        prop="userName"
         label="用户名">
       </el-table-column>
       <el-table-column
         align="center"
-        prop="number"
+        prop="password"
         label="密码">
       </el-table-column>
       <el-table-column
         align="center"
-        prop="state"
+        prop="position"
         label="职位">
       </el-table-column>
       <el-table-column
         align="center"
-        prop="contacts"
+        prop="state"
         label="操作">
       </el-table-column>
     </el-table>
+    <div class="pages">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="50">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -45,28 +52,74 @@ export default {
   data() {
     return {
       tableData: [{
-        type: '111',
-        name: '姓名',
-        contacts: '黄晓明',
-        number: '021-65221564',
+        phoneNumber: '15655223654',
+        name: '李健',
+        userName: 'lijian6',
+        password: '123456',
+        position: '前端工程师',
         state: 1
       }, {
-        type: '协议',
-        name: '吴江市新宏业电器有限公司',
-        contacts: '黄晓明',
-        number: '021-65221564',
+        phoneNumber: '15655223654',
+        name: '李健',
+        userName: 'lijian6',
+        password: '123456',
+        position: '前端工程师',
         state: 1
       }, {
-        type: '合同',
-        name: '吴江市新宏业电器有限公司',
-        contacts: '黄晓明',
-        number: '021-65221564',
+        phoneNumber: '15655223654',
+        name: '李健',
+        userName: 'lijian6',
+        password: '123456',
+        position: '前端工程师',
         state: 1
       }, {
-        type: '合同',
-        name: '吴江市新宏业电器有限公司',
-        contacts: '黄晓明',
-        number: '021-65221564',
+        phoneNumber: '15655223654',
+        name: '李健',
+        userName: 'lijian6',
+        password: '123456',
+        position: '前端工程师',
+        state: 1
+      }, {
+        phoneNumber: '15655223654',
+        name: '李健',
+        userName: 'lijian6',
+        password: '123456',
+        position: '前端工程师',
+        state: 1
+      }, {
+        phoneNumber: '15655223654',
+        name: '李健',
+        userName: 'lijian6',
+        password: '123456',
+        position: '前端工程师',
+        state: 1
+      }, {
+        phoneNumber: '15655223654',
+        name: '李健',
+        userName: 'lijian6',
+        password: '123456',
+        position: '前端工程师',
+        state: 1
+      }, {
+        phoneNumber: '15655223654',
+        name: '李健',
+        userName: 'lijian6',
+        password: '123456',
+        position: '前端工程师',
+        state: 1
+      }, {
+        phoneNumber: '15655223654',
+        name: '李健',
+        userName: 'lijian6',
+        password: '123456',
+        position: '前端工程师',
+        state: 1
+      }, {
+        phoneNumber: '15655223654',
+        name: '李健',
+        userName: 'lijian6',
+        password: '123456',
+        position: '前端工程师',
         state: 1
       }]
     }

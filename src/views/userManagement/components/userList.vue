@@ -14,63 +14,110 @@ export default {
     return {
       objHeight: 0,
       data: [{
+        id: 1,
         label: '超级管理员',
         children: [{
-          label: '管理员1'
+          id: 5,
+          label: '小贱1'
         }, {
-          label: '管理员2'
+          id: 6,
+          label: '小贱2'
         }]
       }, {
+        id: 2,
         label: '华东组',
         children: [{
-          label: '商务编辑管理员1'
+          id: 7,
+          label: '陈云花'
         }, {
-          label: '商务编辑管理员2'
+          id: 7,
+          label: '贾瑞'
         }, {
-          label: '商务编辑管理员2'
+          id: 7,
+          label: '李昌隆'
         }, {
-          label: '商务编辑管理员2'
+          id: 7,
+          label: '李健'
         }, {
-          label: '商务编辑管理员2'
+          id: 7,
+          label: '刘虎'
+        }, {
+          id: 7,
+          label: '王海龙'
+        }, {
+          id: 7,
+          label: '王娟'
+        }, {
+          id: 7,
+          label: '杨文豪'
+        }, {
+          id: 7,
+          label: '叶登'
+        }, {
+          id: 7,
+          label: '周文涛'
         }]
       }, {
+        id: 3,
         label: '华北组',
         children: [{
-          label: '商务编辑管理员1'
+          label: '陈璐'
         }, {
-          label: '商务编辑管理员2'
+          label: '陈明辉'
         }, {
-          label: '商务编辑管理员2'
+          label: '韩晓微'
         }, {
-          label: '商务编辑管理员2'
+          label: '刘传征'
         }, {
-          label: '商务编辑管理员2'
+          label: '刘家利'
+        }, {
+          label: '马洁萌'
+        }, {
+          label: '王蒙蒙'
+        }, {
+          label: '王艳'
+        }, {
+          label: '姚晟晨'
         }]
       }, {
+        id: 4,
         label: '华南组',
         children: [{
-          label: '商务编辑管理员1'
+          label: '蔡耿真'
         }, {
-          label: '商务编辑管理员2'
+          label: '黄宝儿'
         }, {
-          label: '商务编辑管理员2'
+          label: '赖光耀'
         }, {
-          label: '商务编辑管理员2'
+          label: '梁瑞洁'
         }, {
-          label: '商务编辑管理员2'
+          label: '李玲'
+        }, {
+          label: '林晓添'
+        }, {
+          label: '刘付龙晖'
         }]
       }, {
+        id: 5,
         label: '电商组',
         children: [{
-          label: '商务编辑管理员1'
+          label: '樊搏'
         }, {
-          label: '商务编辑管理员2'
+          label: '高嘉树'
         }, {
-          label: '商务编辑管理员2'
+          label: '韩群'
         }, {
-          label: '商务编辑管理员2'
+          label: '郝奕'
         }, {
-          label: '商务编辑管理员2'
+          label: '刘梦岩'
+        }, {
+          label: '李卫'
+        }, {
+          label: '杨亚男'
+        }, {
+          label: '袁巧'
+        }, {
+          label: '张淼'
         }]
       }],
       defaultProps: {

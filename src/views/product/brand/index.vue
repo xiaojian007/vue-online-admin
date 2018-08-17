@@ -8,20 +8,28 @@
         </el-input>
         <el-input placeholder="负责人" v-model="Executor">
         </el-input>
-        <el-select v-model="status" placeholder="进度">
+        <!-- <el-select v-model="status" placeholder="进度">
           <el-option
             v-for="item in statuss"
             :key="item.status"
             :label="item.label"
             :value="item.status">
           </el-option>
-        </el-select>
+        </el-select> -->
         <!-- 时间搜索 -->
-        <!-- <el-date-picker v-model="times" type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="项目开始" end-placeholder="项目结束" :picker-options="pickerOptions">
-        </el-date-picker> -->
+        <el-date-picker v-model="times" type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="项目开始" end-placeholder="项目结束" :picker-options="pickerOptions">
+        </el-date-picker>
         <el-button type="primary" icon="el-icon-search">搜索</el-button>
         <el-button type="primary" @click="handleCreate" icon="el-icon-edit">添加</el-button>
         <el-button type="primary" icon="el-icon-download">导出</el-button>
+        <el-select class="right" v-model="group" placeholder="全部数据">
+          <el-option
+            v-for="item in groups"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
         <span class="right">共计：{{totalNub}}个工单</span>
       </div>
     </div>
@@ -112,187 +120,24 @@
     </div>
     <!-- 新增 -->
     <el-dialog title="项目新增" :visible.sync="dialogFormVisible"  @close='closeDialog'>
-      <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="demo-dynamic">
-        <el-form-item
-          prop="charge"
-          label="总负责人"
-          :rules="[
-            { required: true, message: '请输入负责人', trigger: 'blur' }
-          ]"
-          >
-          <el-input v-model="dynamicValidateForm.charge"></el-input>
-        </el-form-item>
-        <el-form-item
-          prop="name"
-          label="工单名称"
-          :rules="[
-            { required: true, message: '请输入工单名称', trigger: 'blur' }
-          ]"
-          >
-          <el-input v-model="dynamicValidateForm.name"></el-input>
-        </el-form-item>
-        <el-form-item
-          prop="requirement"
-          label="工单要求"
-          :rules="[
-            { required: true, message: '请输入工单要求', trigger: 'blur' }
-          ]"
-          >
-          <el-input v-model="dynamicValidateForm.requirement"></el-input>
-        </el-form-item>
-        <el-form-item class="status" label="状态" prop="status">
-          <el-select v-model="dynamicValidateForm.status" placeholder="请选择状态">
-            <el-option label="已完成" value="已完成"></el-option>
-            <el-option label="确认中" value="确认中"></el-option>
-            <el-option label="设计中" value="设计中"></el-option>
-            <el-option label="未完成" value="未完成"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item class="status" label="重要性" prop="importance">
-          <el-select v-model="dynamicValidateForm.importance" placeholder="请选择重要性">
-            <el-option label="加急" value="加急"></el-option>
-            <el-option label="一般" value="一般"></el-option>
-            <el-option label="修改" value="修改"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          class="time"
-          prop="time"
-          label="项目时间"
-          :rules="[
-            { required: true, message: '请输入项目时间', trigger: 'blur' }
-          ]"
-          >
-          <el-date-picker
-            v-model="dynamicValidateForm.time"
-            type="daterange"
-            start-placeholder="项目开始"
-            end-placeholder="项目结束"
-            value-format='yyyy-MM-dd'>
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item
-          v-for="(domain, index) in dynamicValidateForm.partner"
-          :label="'分配人' + (index + 1)"
-          :key="domain.key"
-          :prop="'partner.' + index + '.value'"
-          class="el-form-contents"
-          >
-          <el-input v-model="domain.project" placeholder="项目名称"></el-input>
-          <el-input v-model="domain.name" placeholder="项目负责人"></el-input>
-          <el-input v-model="domain.requirement" placeholder="备注"></el-input>
-          <el-input v-model="domain.butt" placeholder="对接人"></el-input><br />
-          <el-date-picker
-            v-model="domain.time"
-            type="daterange"
-            start-placeholder="项目开始"
-            end-placeholder="项目结束"
-            value-format='yyyy-MM-dd'>
-          </el-date-picker>
-          <el-button @click.prevent="removeDomain(domain)" type="danger" icon="el-icon-delete">删除</el-button><br />
-          <el-input v-model="domain.progress" type="textarea" class="progress" placeholder="项目进度"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('dynamicValidateForm')">提交</el-button>
-          <el-button @click="addDomain">新增分配人</el-button>
-          <el-button @click="resetForm('dynamicValidateForm')">重置</el-button>
-        </el-form-item>
-      </el-form>
+      <add-work :dataList="dynamicValidateForm"></add-work>
     </el-dialog>
     <!-- 修改 -->
     <el-dialog title="项目修改" :visible.sync="dialogPvVisible" @close='closeDialog'>
-      <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="demo-dynamic">
-        <el-form-item
-          prop="charge"
-          label="总负责人"
-          :rules="[
-            { required: true, message: '请输入负责人', trigger: 'blur' }
-          ]"
-          >
-          <el-input v-model="dynamicValidateForm.charge"></el-input>
-        </el-form-item>
-        <el-form-item
-          prop="name"
-          label="工单名称"
-          :rules="[
-            { required: true, message: '请输入工单名称', trigger: 'blur' }
-          ]"
-          >
-          <el-input v-model="dynamicValidateForm.name"></el-input>
-        </el-form-item>
-        <el-form-item
-          prop="requirement"
-          label="工单要求"
-          :rules="[
-            { required: true, message: '请输入工单要求', trigger: 'blur' }
-          ]"
-          >
-          <el-input v-model="dynamicValidateForm.requirement"></el-input>
-        </el-form-item>
-        <el-form-item class="status" label="状态" prop="status">
-          <el-select v-model="dynamicValidateForm.status" placeholder="请选择状态">
-            <el-option label="已完成" value="已完成"></el-option>
-            <el-option label="确认中" value="确认中"></el-option>
-            <el-option label="设计中" value="设计中"></el-option>
-            <el-option label="未完成" value="未完成"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item class="status" label="重要性" prop="importance">
-          <el-select v-model="dynamicValidateForm.importance" placeholder="请选择重要性">
-            <el-option label="加急" value="加急"></el-option>
-            <el-option label="一般" value="一般"></el-option>
-            <el-option label="修改" value="修改"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item
-          class="time"
-          prop="time"
-          label="项目时间"
-          :rules="[
-            { required: true, message: '请输入项目时间', trigger: 'blur' }
-          ]"
-          >
-          <el-date-picker
-            v-model="dynamicValidateForm.time"
-            type="daterange"
-            start-placeholder="项目开始"
-            end-placeholder="项目结束"
-            value-format='yyyy-MM-dd'>
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item
-          v-for="(domain, index) in dynamicValidateForm.partner"
-          :label="'分配人' + (index + 1)"
-          :key="domain.key"
-          :prop="'partner.' + index + '.value'"
-          class="el-form-contents"
-          >
-          <el-input v-model="domain.project" placeholder="项目名称"></el-input>
-          <el-input v-model="domain.name" placeholder="项目负责人"></el-input>
-          <el-input v-model="domain.requirement" placeholder="备注"></el-input>
-          <el-input v-model="domain.butt" placeholder="对接人"></el-input><br />
-          <el-date-picker
-            v-model="domain.time"
-            type="daterange"
-            start-placeholder="项目开始"
-            end-placeholder="项目结束"
-            value-format='yyyy-MM-dd'>
-          </el-date-picker>
-          <el-button @click.prevent="removeDomain(domain)" type="danger" icon="el-icon-delete">删除</el-button><br />
-          <el-input v-model="domain.progress" type="textarea" class="progress" placeholder="项目进度"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('dynamicValidateForm')">修改</el-button>
-          <el-button @click="addDomain">新增分配人</el-button>
-          <el-button @click="resetForm('dynamicValidateForm')">重置</el-button>
-        </el-form-item>
-      </el-form>
+      <modify-work :dataList="dynamicValidateForm"></modify-work>
     </el-dialog>
   </div>
 </template>
 
 <script>
+import AddWork from '@/components/Addworklist'
+import ModifyWork from '@/components/Modifyworklist'
+
 export default {
+  components: {
+    AddWork,
+    ModifyWork
+  },
   data() {
     return {
       dialogFormVisible: false,
@@ -314,6 +159,20 @@ export default {
       }, {
         value: '选项3',
         status: '确认中'
+      }],
+      group: '',
+      groups: [{
+        value: '1',
+        label: '华东组'
+      }, {
+        value: '2',
+        label: '华北组'
+      }, {
+        value: '3',
+        label: '电商组'
+      }, {
+        value: '4',
+        label: '华南组'
       }],
       dynamicValidateForm: {
         partner: [{
@@ -356,6 +215,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
+        groups: '电商组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -373,6 +233,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
+        groups: '电商组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -397,6 +258,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
+        groups: '电商组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -435,6 +297,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
+        groups: '电商组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -473,6 +336,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
+        groups: '电商组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -511,6 +375,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
+        groups: '电商组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -549,6 +414,7 @@ export default {
         name: '厂商-宝马新单-制作',
         time: ['2018-04-05', '2018-04-05'],
         charge: '李健',
+        groups: '电商组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -587,6 +453,7 @@ export default {
         name: '厂商-宝马新单-制作',
         time: ['2018-04-05', '2018-04-05'],
         charge: '李健',
+        groups: '电商组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '设计中',
@@ -625,6 +492,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
+        groups: '电商组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '确认中',
@@ -663,6 +531,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
+        groups: '电商组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '未完成',
@@ -734,6 +603,7 @@ export default {
       console.log(index, row)
       this.dynamicValidateForm = row
       this.dialogPvVisible = true
+      this.total = 50
     },
     // 删除
     handleDelete(index, row) {
@@ -916,6 +786,7 @@ export default {
       .right {
         float: right;
         color: #f00;
+        margin-left: 20px;
         line-height: 40px;
       }
     }
