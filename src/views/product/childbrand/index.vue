@@ -20,48 +20,13 @@
         <el-date-picker v-model="times" type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="项目开始" end-placeholder="项目结束" :picker-options="pickerOptions">
         </el-date-picker>
         <el-button type="primary" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" @click="handleCreate" icon="el-icon-edit">添加</el-button>
         <el-button type="primary" icon="el-icon-download">导出</el-button>
         <span class="right">共计：{{totalNub}}个工单</span>
       </div>
     </div>
     <div class="contents">
-      <el-table :data="dataList" :default-sort = "{prop: 'endTime'}" style="width: 100%">
-        <el-table-column type="expand">
-          <template slot-scope="props">
-            <div class="partners" v-for="(item, index) in props.row.partner" :key="index">
-              <div class="partner-wrapper">
-                <label class="partner">项目名称</label>
-                <span class="content">{{item.project}}</span>
-              </div>
-              <div class="partner-wrapper">
-                <label class="partner">负责人</label>
-                <span class="content">{{item.name}}</span>
-              </div>
-              <div class="partner-wrapper">
-                <label class="partner">备注</label>
-                <span class="content">{{item.requirement}}</span>
-              </div>
-              <div class="partner-wrapper">
-                <label class="partner">进度</label>
-                <span class="content">{{item.progress}}</span>
-              </div>
-              <div class="partner-wrapper">
-                <label class="partner">对接人</label>
-                <span class="content">{{item.butt}}</span>
-              </div>
-              <div class="partner-wrapper">
-                <label class="partner">开始时间</label>
-                <span class="content">{{item.time[0]}}</span>
-              </div>
-              <div class="partner-wrapper">
-                <label class="partner">完成时间</label>
-                <span class="content">{{item.time[1]}}</span>
-              </div>
-            </div>
-          </template>
-        </el-table-column>
-        <el-table-column align="center" width="100" label="总负责人" prop="charge">
+      <el-table :data="dataList" style="width: 100%">
+        <el-table-column align="center" width="100" label="负责人" prop="charge">
         </el-table-column>
         <el-table-column align="center" width="200" label="工单名称" prop="name">
         </el-table-column>
@@ -110,10 +75,6 @@
         </el-pagination>
       </div>
     </div>
-    <!-- 新增 -->
-    <el-dialog title="项目新增" :visible.sync="dialogFormVisible"  @close='closeDialog'>
-      <add-work :dataList="dynamicValidateForm"></add-work>
-    </el-dialog>
     <!-- 修改 -->
     <el-dialog title="项目修改" :visible.sync="dialogPvVisible" @close='closeDialog'>
       <modify-work :dataList="dynamicValidateForm"></modify-work>
@@ -122,12 +83,10 @@
 </template>
 
 <script>
-import AddWork from '@/components/Addworklist'
 import ModifyWork from '@/components/Modifyworklist'
 
 export default {
   components: {
-    AddWork,
     ModifyWork
   },
   data() {
@@ -153,24 +112,6 @@ export default {
         status: '确认中'
       }],
       dynamicValidateForm: {
-        partner: [{
-          name: '',
-          requirement: '',
-          project: '',
-          butt: '',
-          progress: '',
-          time: []
-        }],
-        id: '',
-        time: [],
-        name: '',
-        charge: '',
-        requirement: '',
-        butt: '',
-        status: '',
-        importance: ''
-      },
-      dynamicValidateForm2: {
         partner: [{
           name: '',
           requirement: '',
@@ -591,10 +532,6 @@ export default {
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`)
     },
-    // 新增
-    handleCreate() {
-      this.dialogFormVisible = true
-    },
     // 加急性选择筛选
     filterImportance(value, row, column) {
       const property = column['property']
@@ -622,39 +559,8 @@ export default {
         return 'primary'
       }
     },
-    // 提交信息
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          console.log(this.dynamicValidateForm)
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
-    },
     // 关闭弹出
     closeDialog() {
-      this.dynamicValidateForm = this.dynamicValidateForm2
-    },
-    // 重置信息
-    resetForm(formName) {
-      console.log(formName)
-      this.$refs[formName].resetFields()
-    },
-    removeDomain(item) {
-      var index = this.dynamicValidateForm.partner.indexOf(item)
-      if (index !== -1) {
-        this.dynamicValidateForm.partner.splice(index, 1)
-      }
-    },
-    // 添加信息
-    addDomain() {
-      this.dynamicValidateForm.partner.push({
-        value: '',
-        key: Date.now()
-      })
     }
   },
   computed: {

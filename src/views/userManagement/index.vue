@@ -12,6 +12,7 @@
         :trigger-on-focus="false"
         @select="handleSelect"
       ></el-autocomplete>
+      <el-button type="primary" icon="el-icon-search">搜索</el-button>      
     </div>
     <div class="search-table">
       <el-row>

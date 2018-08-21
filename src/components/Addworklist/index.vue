@@ -43,14 +43,14 @@
           <el-option label="修改" value="修改"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item class="status" label="组别" prop="group">
+      <!-- <el-form-item class="status" label="组别" prop="group">
         <el-select v-model="dynamicValidateForm.group" placeholder="请选择组别">
           <el-option label="电商组" value="电商组"></el-option>
           <el-option label="华北组" value="华北组"></el-option>
           <el-option label="华东组" value="华东组"></el-option>
           <el-option label="华南组" value="华南组"></el-option>
         </el-select>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item
         class="time"
         prop="time"

@@ -130,3 +130,10 @@ export default {
 }
 </script>
 
+<style lang="scss" scoped>
+  .pages{
+    padding: 20px 10px 20px 0;
+    float: right;
+  }
+</style>
+

@@ -22,6 +22,14 @@
         <el-button type="primary" icon="el-icon-search">搜索</el-button>
         <el-button type="primary" @click="handleCreate" icon="el-icon-edit">添加</el-button>
         <el-button type="primary" icon="el-icon-download">导出</el-button>
+        <el-select class="right" v-model="group" placeholder="全部数据">
+          <el-option
+            v-for="item in groups"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
         <span class="right">共计：{{totalNub}}个工单</span>
       </div>
     </div>
@@ -60,6 +68,8 @@
               </div>
             </div>
           </template>
+        </el-table-column>
+        <el-table-column align="center" width="100" label="组别" prop="groups">
         </el-table-column>
         <el-table-column align="center" width="100" label="总负责人" prop="charge">
         </el-table-column>
@@ -151,6 +161,20 @@ export default {
       }, {
         value: '选项3',
         status: '确认中'
+      }],
+      group: '',
+      groups: [{
+        value: '1',
+        label: '华东组'
+      }, {
+        value: '2',
+        label: '华北组'
+      }, {
+        value: '3',
+        label: '电商组'
+      }, {
+        value: '4',
+        label: '华南组'
       }],
       dynamicValidateForm: {
         partner: [{

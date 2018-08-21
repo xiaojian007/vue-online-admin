@@ -67,30 +67,8 @@
             value-format='yyyy-MM-dd'>
           </el-date-picker>
         </el-form-item>
-        <el-form-item
-          v-for="(domain, index) in dataList.partner"
-          :label="'分配人' + (index + 1)"
-          :key="domain.key"
-          :prop="'partner.' + index + '.value'"
-          class="el-form-contents"
-          >
-          <el-input v-model="domain.project" placeholder="项目名称"></el-input>
-          <el-input v-model="domain.name" placeholder="项目负责人"></el-input>
-          <el-input v-model="domain.requirement" placeholder="备注"></el-input>
-          <el-input v-model="domain.butt" placeholder="对接人"></el-input><br />
-          <el-date-picker
-            v-model="domain.time"
-            type="daterange"
-            start-placeholder="项目开始"
-            end-placeholder="项目结束"
-            value-format='yyyy-MM-dd'>
-          </el-date-picker>
-          <el-button @click.prevent="removeDomain(domain)" type="danger" icon="el-icon-delete">删除</el-button><br />
-          <el-input v-model="domain.progress" type="textarea" class="progress" placeholder="项目进度"></el-input>
-        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('dataList')">修改</el-button>
-          <el-button @click="addDomain">新增分配人</el-button>
           <el-button @click="resetForm('dataList')">重置</el-button>
         </el-form-item>
       </el-form>
@@ -109,13 +87,6 @@ export default {
     }
   },
   methods: {
-    // 添加信息
-    addDomain() {
-      this.dataList.partner.push({
-        value: '',
-        key: Date.now()
-      })
-    },
     // 提交信息
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
