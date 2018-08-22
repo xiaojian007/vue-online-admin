@@ -43,13 +43,13 @@ export const constantRouterMap = [
   {
     path: '/example',
     component: Layout,
-    redirect: 'classchart',
+    redirect: 'product',
     name: 'Example',
     meta: { title: '工单管理', icon: 'example' },
     children: [
       {
-        path: 'classchart',
-        name: 'Classchart',
+        path: 'classification',
+        name: 'Classification',
         component: () => import('@/views/product/classification/index'),
         meta: {
           title: '普通工单',
@@ -71,7 +71,6 @@ export const constantRouterMap = [
       }
     ]
   },
-
   {
     path: '/picture',
     component: Layout,
@@ -83,17 +82,38 @@ export const constantRouterMap = [
         path: 'advertisement',
         name: 'Advertisement',
         component: () => import('@/views/picture/advertisement/index'),
-        meta: { title: '广告管理', icon: 'tree' }
+        meta: { title: '素材库', icon: 'tree' }
       },
       {
         path: 'category',
         name: 'Category',
         component: () => import('@/views/picture/category/index'),
-        meta: { title: '分类管理', icon: 'tree' }
+        meta: { title: '页面组件', icon: 'tree' }
+      },
+      {
+        path: 'index',
+        component: () => import('@/views/svg-icons/index'),
+        name: 'icons',
+        meta: { title: '图标', icon: 'icon' }
       }
     ]
   },
-  // 企业管理
+  {
+    path: '/newlybuild',
+    component: Layout,
+    redirect: 'newlybuild',
+    name: 'newlyBuild',
+    meta: { title: '下单管理', icon: 'excel' },
+    children: [
+      {
+        path: 'manageAe',
+        name: 'manageAe',
+        component: () => import('@/views/newlybuild/manageAe/index'),
+        meta: { title: 'AE下单', icon: 'people' }
+      }
+    ]
+  },
+  // 账户管理
   {
     path: '/enterprise',
     component: Layout,

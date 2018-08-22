@@ -9,13 +9,13 @@
         <el-input placeholder="负责人" v-model="Executor">
         </el-input>
         <!-- <el-select v-model="status" placeholder="进度">
-          <el-option
-            v-for="item in statuss"
-            :key="item.status"
-            :label="item.label"
-            :value="item.status">
-          </el-option>
-        </el-select> -->
+            <el-option
+              v-for="item in statuss"
+              :key="item.status"
+              :label="item.label"
+              :value="item.status">
+            </el-option>
+          </el-select> -->
         <!-- 时间搜索 -->
         <el-date-picker v-model="times" type="daterange" align="right" unlink-panels range-separator="至" start-placeholder="项目开始" end-placeholder="项目结束" :picker-options="pickerOptions">
         </el-date-picker>
@@ -34,17 +34,9 @@
         </el-table-column>
         <el-table-column align="center" width="150" label="完成时间" sortable prop="time[1]">
         </el-table-column>
-        <el-table-column
-          prop="importance"
-          label="加急性"
-          width="100"
-          :filters="[{ text: '加急', value: '加急' }, { text: '一般', value: '一般' },  { text: '修改', value: '修改' }]"
-          :filter-method="filterImportance"
-          filter-placement="bottom-end">
+        <el-table-column prop="importance" label="加急性" width="100" :filters="[{ text: '加急', value: '加急' }, { text: '一般', value: '一般' },  { text: '修改', value: '修改' }]" :filter-method="filterImportance" filter-placement="bottom-end">
           <template slot-scope="scope">
-            <el-tag
-              :type="aboutImportance(scope.row.importance)"
-              disable-transitions>{{scope.row.importance}}</el-tag>
+            <el-tag :type="aboutImportance(scope.row.importance)" disable-transitions>{{scope.row.importance}}</el-tag>
           </template>
         </el-table-column>
         <el-table-column align="center" label="对接人" prop="butt">
@@ -53,38 +45,32 @@
         </el-table-column>
         <el-table-column align="center" label="状态" prop="status">
           <template slot-scope="scope">
-            <el-tag
-              :type="statusImportance(scope.row.status)"
-              disable-transitions>{{scope.row.status}}</el-tag>
+            <el-tag :type="statusImportance(scope.row.status)" disable-transitions>
+              {{scope.row.status}}</el-tag>
           </template>
         </el-table-column>
         <el-table-column align="center" width="180" label="操作">
           <template slot-scope="scope">
-            <el-button size="mini" @click="handleUpdate(scope.$index, scope.row)">编辑</el-button>
+            <el-button size="mini" @click="handleUpdate(scope.$index, scope.row)">
+              编辑</el-button>
             <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
       <div class="paginations">
-        <el-pagination
-          @current-change="handleCurrentChange"
-          background
-          :page-size="pageSize"
-          layout="total, prev, pager, next, jumper"
-          :total="total">
+        <el-pagination @current-change="handleCurrentChange" background :page-size="pageSize" layout="total, prev, pager, next, jumper" :total="total">
         </el-pagination>
       </div>
     </div>
     <!-- 修改 -->
-    <el-dialog title="项目修改" :visible.sync="dialogPvVisible" @close='closeDialog'>
+    <el-dialog class="els" title="项目修改" :visible.sync="dialogPvVisible" @close='closeDialog'>
       <modify-work :dataList="dynamicValidateForm"></modify-work>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import ModifyWork from '@/components/Modifyworklist'
-
+import ModifyWork from '@/views/components/Modifyworklist'
 export default {
   components: {
     ModifyWork
@@ -560,89 +546,40 @@ export default {
       }
     },
     // 关闭弹出
-    closeDialog() {
-    }
+    closeDialog() { }
   },
-  computed: {
-  }
+  computed: {}
 }
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-.demo-input-suffix{
+.demo-input-suffix {
   .el-input {
     width: 150px;
   }
 }
-.el-dialog{
-  width: 70%;
-  .demo-dynamic::-webkit-scrollbar {/*滚动条整体样式*/
-    width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
-    height: 1px;
-  }
-  .demo-dynamic::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-    background: #535353;
-  }
-  .demo-dynamic::-webkit-scrollbar-track {/*滚动条里面轨道*/
-    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-    border-radius: 10px;
-    background: #EDEDED;
-  }
-  .demo-dynamic{
-    height: 600px;
-    overflow: auto;
-    .el-input{
-      width: 95.6%;
-    }
-    .status{
-      width: 25%;
-      display: inline-block;
-    }
-    .time{
-      width: 37%;
-      display: inline-block;
-      .el-date-editor{
-        width: 90%;
-      }
-    }
-    .el-form-contents{
-      .el-input{
-        width: 22%;
-        margin: 0 20px 10px 0;
-      }
-      .el-date-editor{
-          width: 46.5%;
-        }
-      .el-button--danger{
-        margin-left: 20px;
-        height: 40px;
-      }
-      .progress{
-        margin-top: 10px;
-        width: 95.6%;
-      }
-    }
-  }
-}
-.demo-input-suffix>div{
+.demo-input-suffix > div {
   margin-right: 10px;
 }
-.partners{
+.els {
+  .el-dialog {
+    width: 70%;
+  }
+}
+.partners {
   width: 50%;
   float: left;
   border-bottom: 1px solid #ccc;
-  .partner-wrapper{
+  .partner-wrapper {
     width: 100%;
     margin: 15px 0;
     display: flex;
-    .partner{
+    .partner {
       width: 90px;
       text-align: left;
       color: #99a9bf;
     }
-    .content{
+    .content {
       flex: 1;
     }
   }
@@ -675,11 +612,11 @@ export default {
       }
     }
   }
-  .contents{
+  .contents {
     border: 1px solid #ccc;
     margin-top: 30px;
     overflow: auto;
-    .paginations{
+    .paginations {
       padding: 20px 10px 20px 0;
       float: right;
     }

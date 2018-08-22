@@ -161,3 +161,55 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .demo-dynamic::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+  }
+  .demo-dynamic::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #535353;
+  }
+  .demo-dynamic::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background: #EDEDED;
+  }
+  .demo-dynamic{
+    height: 600px;
+    overflow: auto;
+    .el-input{
+      width: 95.6%;
+    }
+    .status{
+      width: 25%;
+      display: inline-block;
+    }
+    .time{
+      width: 37%;
+      display: inline-block;
+      .el-date-editor{
+        width: 90%;
+      }
+    }
+    .el-form-contents{
+      .el-input{
+        width: 22%;
+        margin: 0 20px 10px 0;
+      }
+      .el-date-editor{
+          width: 46.5%;
+        }
+      .el-button--danger{
+        margin-left: 20px;
+        height: 40px;
+      }
+      .progress{
+        margin-top: 10px;
+        width: 95.6%;
+      }
+    }
+  }
+</style>
