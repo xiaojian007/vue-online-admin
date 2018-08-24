@@ -703,6 +703,11 @@ export default {
         margin-left: 20px;
         line-height: 40px;
       }
+      .demo-input-suffix {
+        .el-input {
+          width: 150px;
+        }
+      }
     }
   }
   .contents {

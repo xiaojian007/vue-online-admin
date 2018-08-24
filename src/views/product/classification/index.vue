@@ -22,24 +22,34 @@
         <el-button type="primary" icon="el-icon-search">搜索</el-button>
         <el-button type="primary" @click="handleCreate" icon="el-icon-edit">添加</el-button>
         <el-button type="primary" icon="el-icon-download">导出</el-button>
-        <el-select class="right" v-model="group" placeholder="全部数据">
+        <!-- <el-select class="right" v-model="group" placeholder="全部数据">
           <el-option
             v-for="item in groups"
             :key="item.value"
             :label="item.label"
             :value="item.value">
           </el-option>
-        </el-select>
+        </el-select> -->
         <span class="right">共计：{{totalNub}}个工单</span>
       </div>
     </div>
     <div class="contents">
       <el-table :data="dataList" style="width: 100%">
-        <el-table-column align="center" width="100" label="组别" prop="groups">
-        </el-table-column>
         <el-table-column align="center" width="100" label="负责人" prop="charge">
         </el-table-column>
         <el-table-column align="center" width="200" label="工单名称" prop="name">
+        </el-table-column>
+        <el-table-column
+          prop="groups"
+          label="组别"
+          width="100"
+          :filters="[{ text: '华东组', value: '华东组' }, { text: '华南组', value: '华南组' },  { text: '华北组', value: '华北组' }]"
+          :filter-method="filterGroups"
+          filter-placement="bottom-end">
+          <template slot-scope="scope">
+            <!-- <el-tag>{{scope.row.groups}}</el-tag> -->
+            {{scope.row.groups}}
+          </template>
         </el-table-column>
         <el-table-column align="center" label="开始时间" prop="time[0]">
         </el-table-column>
@@ -148,7 +158,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
-        groups: '华东组',
+        groups: '华北组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -158,7 +168,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
-        groups: '华东组',
+        groups: '华北组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -168,7 +178,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
-        groups: '华东组',
+        groups: '华北组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -178,7 +188,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
-        groups: '华东组',
+        groups: '华北组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -188,7 +198,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
-        groups: '华东组',
+        groups: '华北组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -198,7 +208,7 @@ export default {
         time: ['2018-04-05', '2018-04-05'],
         name: '厂商-宝马新单-制作',
         charge: '李健',
-        groups: '华东组',
+        groups: '华北组',
         requirement: '需要做出动画效果，突显宝马的车子',
         butt: '小李',
         status: '已完成',
@@ -297,6 +307,10 @@ export default {
     },
     // 加急性选择筛选
     filterImportance(value, row, column) {
+      const property = column['property']
+      return row[property] === value
+    },
+    filterGroups(value, row, column) {
       const property = column['property']
       return row[property] === value
     },
