@@ -25,7 +25,7 @@
           <div class="bg"></div>
           <div class="link">
             <p>{{item.title}}</p>
-            <a :href="item.src" target="_blank">预览效果</a>
+            <a :href="item.href" target="_blank">预览效果</a>
           </div>
         </div>
       </div>
